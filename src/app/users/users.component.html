@@ -1,9 +1,17 @@
 <div style="text-align: center;">
     
-    <app-user-list></app-user-list>
+    <app-user-list 
+    [users]="users" 
+    (deleteUser)="deleteUser($event)"
+    ></app-user-list>
 
-    <a routerLink="/nuevo-user" class="button is-info">Nuevo Usuario</a>
+    <app-confirm-modal
+    [isActive]="isActive"
+    [question]="question"
+    (response)="onResponse($event)"
+    ></app-confirm-modal>
+
+    <a routerLink="/nuevo-user" class="button is-link is-rounded">Nuevo Usuario</a>
 </div>
 
 
-<!-- [users]="users" -->

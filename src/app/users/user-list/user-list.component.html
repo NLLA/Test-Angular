@@ -1,3 +1,26 @@
-<p>
-  user-list works!
-</p>
+<div class="container">
+  <div>
+        <h1 class="title is-3">Lista de Usuarios</h1>
+        <table  class="table is-striped is-bordered">
+            <thead>
+                <th *ngFor="let etiqueta of titles">
+                    {{ etiqueta | title }}
+                </th>
+                <th colspan="2">Acciones</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users">
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.name}}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.role }}</td>
+                    <td>{{ user.years }}</td>
+                    <td><button  class="button is-normal is-success is-rounded" (click)="userUpdate(user.id)">Actualizar</button></td>
+                    <td><button  class="button is-normal is-danger is-rounded" (click)="handleDelete(user)">Eliminar</button></td>
+                    
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <ng-template #empty><span style="color:blue;"> No existe usuario</span></ng-template>
+</div>

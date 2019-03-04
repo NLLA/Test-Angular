@@ -1,3 +1,7 @@
-<p>
-  user-create Prueba Nayareth!
-</p>
+<div class="container">
+  <app-user-form
+      [user]="newUser" 
+      (handleSubmit)="handleSubmit($event)"
+      [title]="title">
+  </app-user-form>
+</div>

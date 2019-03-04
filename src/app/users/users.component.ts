@@ -8,11 +8,13 @@ import { UserService } from '../services/user.service';
 })
 export class UsersComponent implements OnInit {
     users: User[];
+    question: string;
+    isActive: boolean;
+    userToDelete: User;
 
     constructor(private userService: UserService) {}
 
     ngOnInit() {
-        console.log("aqui");
         this.users = [];
         this.getUsers();        
     }
@@ -22,7 +24,31 @@ export class UsersComponent implements OnInit {
             .subscribe((users: User[]) => {
                 this.users = users;
             });
-        console.log("usuarios"+this.users)
+    }
+
+    deleteUser(user: User) {
+        this.question = `
+            ¿Esta seguro que desea eliminar el usuario <b>"${user.name}"</b>?
+        `;
+        this.isActive = true;
+        this.userToDelete = user;
+    }
+
+
+    onResponse(confirmation: boolean) {
+        if (confirmation) {
+            const { id } = this.userToDelete;
+
+            this.userService.deleteUser(id)
+                .subscribe(response => {
+                    this.users= this.users
+                        .filter(user => user.id !== id);
+                    this.isActive = false;
+                });
+        } else {
+            this.isActive = false;
+        }
+
     }
 
   

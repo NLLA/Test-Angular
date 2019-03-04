@@ -11,6 +11,9 @@ import { UserService } from './services/user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { routes } from './app.routing';
+import { TitlePipe } from './pipes/title.pipe';
+import { FormsModule} from '@angular/forms';
+import { ConfirmModalComponent } from './components/modals/confirm-modal/confirm-modal.component';
 
 
 @NgModule({
@@ -20,12 +23,15 @@ import { routes } from './app.routing';
     UserCreateComponent,
     UserEditComponent,
     UserListComponent,
-    UsersComponent
+    UsersComponent,
+    ConfirmModalComponent,
+    TitlePipe
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    FormsModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
